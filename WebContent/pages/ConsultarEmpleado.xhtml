@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">      
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Consultar</title>
+</h:head>
+<body>
+	<h2>Consultar Empleados</h2>
+   
+   	<h:form id="formListarTabla">
+	    <p:dataTable id="tablaEmpleados" value="#{empleadoBean.listarEmpleados}" var="obj" paginator="true" paginatorPosition="top">
+		   	<p:column>
+		   		<f:facet name = "header"><h:outputText value="Cedula"></h:outputText></f:facet>
+		   		<h:outputText value="#{obj.cedula}"></h:outputText>
+		   	</p:column>
+		   	
+		   	<p:column>
+		   		<f:facet name = "header"><h:outputText value="Nombre"></h:outputText></f:facet>
+		   		<h:outputText value="#{obj.nombre}"></h:outputText>
+		   	</p:column>
+		   	
+		   	<p:column headerText ="Apellido">
+		   		<h:outputText value="#{obj.apellido}"></h:outputText>
+		   	</p:column>
+	   	</p:dataTable>   
+	</h:form>		
+	
+	<h2>Agregar Empleados</h2>
+   	<h:form>
+		<p:commandButton value="nuevo" actionListener="#{empleadoBean.prepararNuevoEmpleado}" update="addForm"></p:commandButton>
+		
+	</h:form>
+   	<h:form id="addForm">
+	   
+		<p:panelGrid columns="3" style ="margin 0 auto;">
+		   <p:outputLabel value="Cedula" />
+	   	   <h:inputText value="#{empleadoBean.empleado.cedula}"></h:inputText><br></br>
+	   	   <p:outputLabel value="Nombre" />
+	   	   <h:inputText value="#{empleadoBean.empleado.nombre}"></h:inputText><br></br>
+	   	   <p:outputLabel value="Apellido" />
+	   	   <h:inputText value="#{empleadoBean.empleado.apellido}"></h:inputText><br></br>
+   	   </p:panelGrid>  
+   	   <p:commandButton value="agregar" actionListener="#{empleadoBean.guardarEmpleado}" update="formListarTabla" ></p:commandButton>
+
+	</h:form>
+   
+		
+	
+   	 
+</body>
+</html>

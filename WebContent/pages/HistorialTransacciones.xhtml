@@ -1,0 +1,118 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:adm="http://github.com/adminfaces"
+                template="/WEB-INF/templates/plantilla.xhtml">
+	
+	<h:head>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resources['images/favicon.ico']}"/>
+
+        <title>Crud AdminFaces</title>
+    </h:head>
+
+	<ui:define name="logo-lg">
+        LOGO
+    </ui:define>
+
+    <ui:define name="logo-mini">
+        L
+    </ui:define>
+
+    <ui:define name="menu-begin">
+        <ui:include src="/includes/menu-search.xhtml"/>
+    </ui:define>
+
+     <ui:define name="menu">
+         <ui:include src="/includes/menu.xhtml"/>
+     </ui:define>
+
+    <ui:define name="top-menu">
+        <ui:include src="/includes/top-menu.xhtml"/>
+    </ui:define>
+   
+    <ui:define name="content-end">
+        <section class="content">
+            <ui:insert name="code"/>
+        </section>
+    </ui:define>
+
+    <ui:define name="footer">
+        <a target="_blank" href="#">
+            Copyright (C) 2017 - Company c.a
+        </a>
+        <div class="pull-right hidden-xs" style="color: gray">
+            <i>v1.0</i>
+        </div>
+
+        <h:outputScript library="js" name="prism.js"  target="head"/>
+    </ui:define>
+	    
+    <ui:define name="title">
+       Historial de Transacciones
+    </ui:define>
+
+    <ui:define name="description">
+        Transacciones efectuadas en dispositivos POS
+    </ui:define>
+
+    <ui:define name="body">
+   			<adm:breadcrumb title="Historial de Transacciones"/>
+
+     	 <div class="box box-primary"> 
+         	<div class="box-header with-border">
+         	  <h:form> 
+              	<p:commandButton action="cadastro-default?faces-redirect=true" ajax="false" icon="fa fa-plus"
+                   	            value="Novo" styleClass="btn-primary"/>
+              	<p:spacer width="5"/>
+                <p:commandButton value="Excluir Selecionado(s)" icon="fa fa-trash" styleClass="btn-danger"
+                                process="@form" update="@form"/>
+                <p:spacer width="5"/>
+                <p:commandButton value="Olhar Selecionado(s)" 
+               				 oncomplete="PF('defaultSelecionadas').show()"
+               				 update="@(.ui-dialog)" 
+               				 styleClass="btn-info"
+                                icon="fa fa-search"/>
+                <p:separator/>
+            </h:form> 
+          </div> <!--  box -header -->
+          <div class="box-body">                                   
+            <h:form>
+     				<p:dataTable id="tableStateDT" var="car" value="#{empleadoBean.listarEmpleados}" widgetVar="carsTable" multiViewState="true"
+	                 rows="10" paginator="true"
+	                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                 rowsPerPageTemplate="5,10,15,20"
+	                 selectionMode="single" selection="#{empleadoBean.empleado}" rowKey="#{car.cedula}"
+	                 emptyMessage="No cars found with given criteria" >
+	                
+	 
+			        <f:facet name="header">
+			            <p:outputPanel>
+			                <h:outputText value="Search all fields:" />
+			                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+			            </p:outputPanel>
+		        	</f:facet>
+		 
+			        <p:column headerText="Id" filterBy="#{car.cedula}" sortBy="#{car.cedula}" filterMatchMode="contains">
+			            <h:outputText value="#{car.cedula}" />
+			        </p:column>
+		 
+			        <p:column headerText="nombre" filterBy="#{car.nombre}" sortBy="#{car.nombre}" filterMatchMode="contains">
+			            <h:outputText value="#{car.nombre}" />
+			        </p:column>
+			 
+			        <p:column headerText="apellido" filterBy="#{car.apellido}" sortBy="#{car.apellido}" filterMatchMode="contains">
+			            <h:outputText value="#{car.apellido}" />
+			        </p:column>
+	 			</p:dataTable>
+			  </h:form> 
+    	  </div> <!-- box-body -->
+		</div>  <!-- box-primary -->
+        	        
+    </ui:define>
+
+</ui:composition>
