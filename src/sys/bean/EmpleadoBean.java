@@ -21,13 +21,14 @@ public class EmpleadoBean implements Serializable {
 	
 	EmpleadoDao ce = new EmpleadoDaoImp();      
 	
-	private List<Empleado> listarEmpleados;
-    private Empleado empleado;  
+	private Empleado empleado;  
+	private List<Empleado> listarEmpleados;   
    
+  
     public EmpleadoBean() {
-	     
+	     this.empleado = new Empleado();
     }
-   
+    
     public Empleado getEmpleado() {
 		return empleado;
 	}
@@ -52,13 +53,7 @@ public class EmpleadoBean implements Serializable {
     }
     
    
-    
-    public void prepararNuevoEmpleado() {
-    	System.out.println("instanciando");
-    	//empleado = new Empleado();
-    }
-
-	public List<Empleado> getListarEmpleados() {
+  	public List<Empleado> getListarEmpleados() {
 		listarEmpleados = ce.listarEmpleados();    	
 
 		return listarEmpleados;

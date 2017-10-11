@@ -1,30 +1,43 @@
 package sys.bean;
 
 import javax.faces.bean.ManagedBean;
+
+import sys.model.Login;
  
-@ManagedBean
+@ManagedBean(name="LoginBean")
 public class LoginBean {
      
-    private String password1;  
-    private boolean value1;
- 
-    public String getPassword1() {
-        return password1;
-    }
- 
-    public void setPassword1(String password1) {
-        this.password1 = password1;
-    }
-
-	public boolean isValue1() {
-		return value1;
+	private Login login;
+	
+		
+	public LoginBean() {
+		this.login = new Login();
 	}
 
-	public void setValue1(boolean value1) {
-		this.value1 = value1;
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
     
-    
+	public String iniciarSesion(){
+		System.out.println("entro a iniciar Sesion");
+		if (login.getUser().equals("admin") && login.getPassword().equals("admin")){
+			System.out.println("clave correcta");
+			System.out.println("user" +login.getUser() + "password" + login.getPassword());
+			return "HistorialTransacciones.xhtml";
+		}
+		else {
+			System.out.println("clave incorrecta");
+			System.out.println("user" +login.getUser() + "password" + login.getPassword());
+			return "";
+		}
+		
+	}
+
+
  
     
 }

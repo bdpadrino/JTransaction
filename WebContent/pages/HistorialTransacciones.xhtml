@@ -82,11 +82,11 @@
           </div> <!--  box -header -->
           <div class="box-body">                                   
             <h:form>
-     				<p:dataTable id="tableStateDT" var="car" value="#{empleadoBean.listarEmpleados}" widgetVar="carsTable" multiViewState="true"
+     				<p:dataTable id="tableStateDT" var="car" value="#{transactionBean.listarEmpleados}" widgetVar="carsTable" multiViewState="true"
 	                 rows="10" paginator="true"
 	                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 	                 rowsPerPageTemplate="5,10,15,20"
-	                 selectionMode="single" selection="#{empleadoBean.empleado}" rowKey="#{car.cedula}"
+	                 selectionMode="single" selection="#{TransactionBean.transaction}" rowKey="#{car.systems_trace_number}"
 	                 emptyMessage="No cars found with given criteria" >
 	                
 	 
@@ -97,15 +97,15 @@
 			            </p:outputPanel>
 		        	</f:facet>
 		 
-			        <p:column headerText="Id" filterBy="#{car.cedula}" sortBy="#{car.cedula}" filterMatchMode="contains">
+			        <p:column headerText="Id" filterBy="#{car.systems_trace_number}" sortBy="#{car.systems_trace_number}" filterMatchMode="contains">
 			            <h:outputText value="#{car.cedula}" />
 			        </p:column>
 		 
-			        <p:column headerText="nombre" filterBy="#{car.nombre}" sortBy="#{car.nombre}" filterMatchMode="contains">
+			        <p:column headerText="nombre" filterBy="#{car.transaction_type}" sortBy="#{car.transaction_type}" filterMatchMode="contains">
 			            <h:outputText value="#{car.nombre}" />
 			        </p:column>
 			 
-			        <p:column headerText="apellido" filterBy="#{car.apellido}" sortBy="#{car.apellido}" filterMatchMode="contains">
+			        <p:column headerText="apellido" filterBy="#{car.amount_transaction}" sortBy="#{car.amount_transaction}" filterMatchMode="contains">
 			            <h:outputText value="#{car.apellido}" />
 			        </p:column>
 	 			</p:dataTable>
