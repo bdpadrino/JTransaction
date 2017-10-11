@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+<h:head> 
+	  
+	  <title>Login</title> 	  
+	 	<!--   <h:outputStylesheet library="css" name="styleLogin.css" -->
+	    <link rel="stylesheet" type="text/css" href="../resources/css/styleLogin.css">/>
+</h:head>
+<body>
+		<div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>Wel<span>come</span></div>
+		</div>
+		<h:form>
+			<div class="login">
+				<p:inputText  value="#{LoginBean.login.user}" placeholder="User"/>
+				<p:password id="nonFeedback" value="#{LoginBean.login.password}" placeholder="Password" />	
+				<p:commandButton value="Sign In." actionListener="#{LoginBean.iniciarSesion}"></p:commandButton>		 
+			</div>
+		</h:form>
+ 
+</body>
+</html>
