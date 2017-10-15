@@ -27,7 +27,7 @@ public class TransactionDaoImp implements TransactionDao {
     public  List<Transaction> listTransactions() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         @SuppressWarnings("unchecked")			
-        List<Transaction> listaTransaction = session.createQuery("FROM Transaction order by nombre").list();
+        List<Transaction> listaTransaction = session.createQuery("FROM Transaction").list();
         session.close();
         System.out.println("Found " + listaTransaction.size() + " Transaction");
         return listaTransaction;

@@ -40,7 +40,7 @@
 			        <p:link outcome="HistorialTransacciones.xhtml" value="HistorialTransacciones">
 					    <f:param name="productId" value="10" />
 					</p:link>
-			          <p:commandButton value="Sign In." actionListener="#{LoginBean.iniciarSesion}" class="btn btn-primary btn-block btn-flat" ></p:commandButton>
+			          <p:commandButton value="Sign In." actionListener="#{LoginBean.iniciarSesion}" class="btn btn-primary btn-block btn-flat" process="@this"></p:commandButton>
 			        	
 			         <!--  <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button> -->
 			        </div>

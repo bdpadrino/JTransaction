@@ -1,6 +1,7 @@
 package sys.bean;
 
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -11,7 +12,7 @@ import sys.model.Transaction;
 import java.io.Serializable;
 import java.util.List;
 
-@ManagedBean
+@ManagedBean(name="transactionBean")
 @SessionScoped
 public class TransactionBean implements Serializable {
 
@@ -23,6 +24,16 @@ public class TransactionBean implements Serializable {
 	private List<Transaction> listTransactions;
 	
 	
+		
+	public TransactionBean() {
+		
+	}
+    
+	@PostConstruct
+    public void init() {
+		this.transaction = new Transaction();
+    }
+	
 	public Transaction getTransaction() {
 		return transaction;
 	}
@@ -31,6 +42,7 @@ public class TransactionBean implements Serializable {
 	}
 	public List<Transaction> getListTransactions() {
 		listTransactions = ct.listTransactions();
+		
 		return listTransactions;
 	}
 	public void setListTransactions(List<Transaction> listTransactions) {

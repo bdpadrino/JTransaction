@@ -1,8 +1,12 @@
 package sys.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "system_transaction")
 public class Transaction {
 	
 	@Id
@@ -12,7 +16,7 @@ public class Transaction {
     private String  transaction_type;
 	@Column(name = "pos_entry_mode")										//METODO DE ENTRADA DE LA TARJETA AL PUNTO DE VENTA
     private Integer pos_entry_mode;	
-	@Column(name = "model")
+	@Column(name = "terminal_model")
     private String  model;
 	@Column(name = "iso")
     private String  iso ;
@@ -22,8 +26,8 @@ public class Transaction {
     private String  card_holder;                                             //NOMBRE TEJETAHABIENTE
 	@Column(name = "issuer")
 	private String  issuer;                                                  //EMISOR "VISA"
-	@Column(name = "acquiring_institution_id")
-	private String  acquiring_institution_id;                                //CODIGO DEL BANCO EMISOR DE LA TARJETA
+	/*@Column(name = "acquiring_institution_id")
+	private String  acquiring_institution_id;    */                            //CODIGO DEL BANCO EMISOR DE LA TARJETA
 	@Column(name = "card_acceptor_name")
 	private String  card_acceptor_name;                                      //NOMBRE DEL COMERCIO DUENO DEL POS
 	@Column(name = "card_acceptor_terminal_id")
@@ -45,8 +49,9 @@ public class Transaction {
     }
 
 
+
 	public Transaction(Integer systems_trace_number, String transaction_type, Integer pos_entry_mode, String model,
-			String iso, String pan, String card_holder, String issuer, String acquiring_institution_id,
+			String iso, String pan, String card_holder, String issuer, 
 			String card_acceptor_name, String card_acceptor_terminal_id, Double amount_transaction,
 			String time_transaction, String date_transaction, String date_expiration, String currency) {
 		super();
@@ -58,7 +63,6 @@ public class Transaction {
 		this.pan = pan;
 		this.card_holder = card_holder;
 		this.issuer = issuer;
-		this.acquiring_institution_id = acquiring_institution_id;
 		this.card_acceptor_name = card_acceptor_name;
 		this.card_acceptor_terminal_id = card_acceptor_terminal_id;
 		this.amount_transaction = amount_transaction;
@@ -146,16 +150,6 @@ public class Transaction {
 
 	public void setIssuer(String issuer) {
 		this.issuer = issuer;
-	}
-
-
-	public String getAcquiring_institution_id() {
-		return acquiring_institution_id;
-	}
-
-
-	public void setAcquiring_institution_id(String acquiring_institution_id) {
-		this.acquiring_institution_id = acquiring_institution_id;
 	}
 
 
