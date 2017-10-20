@@ -6,7 +6,7 @@ import java.util.List;
 import sys.dao.EmpleadoDao;
 import sys.dao.imp.EmpleadoDaoImp;
 import sys.model.Empleado;
-
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -26,7 +26,12 @@ public class EmpleadoBean implements Serializable {
    
   
     public EmpleadoBean() {
-	     this.empleado = new Empleado();
+	     
+    }
+    
+    @PostConstruct
+    public void init() {
+    	this.empleado = new Empleado();
     }
     
     public Empleado getEmpleado() {

@@ -12,6 +12,7 @@ import sys.model.Transaction;
 import java.io.Serializable;
 import java.util.List;
 
+
 @ManagedBean(name="transactionBean")
 @SessionScoped
 public class TransactionBean implements Serializable {
@@ -22,7 +23,6 @@ public class TransactionBean implements Serializable {
 	
 	private Transaction transaction;  
 	private List<Transaction> listTransactions;
-	
 	
 		
 	public TransactionBean() {
@@ -37,14 +37,17 @@ public class TransactionBean implements Serializable {
 	public Transaction getTransaction() {
 		return transaction;
 	}
+	
 	public void setTransaction(Transaction transaction) {
 		this.transaction = transaction;
 	}
+	
 	public List<Transaction> getListTransactions() {
 		listTransactions = ct.listTransactions();
 		
 		return listTransactions;
 	}
+	
 	public void setListTransactions(List<Transaction> listTransactions) {
 		this.listTransactions = listTransactions;
 	} 

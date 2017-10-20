@@ -40,8 +40,8 @@
           </div> <!--  box -header -->
           <div class="box-body">                                   
             <h:form>
-     				<p:dataTable id="tableStateDT" var="car" value="#{transactionBean.listTransactions}" widgetVar="carsTable" multiViewState="true"
-	                 rows="10" paginator="true" paginatorPosition="top"
+   				<p:dataTable id="tableStateDT" var="car" value="#{transactionBean.listTransactions}" widgetVar="carsTable" multiViewState="true"
+	                 rows="10" paginator="true" paginatorPosition="bottom" 
 	                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 	                 rowsPerPageTemplate="5,10,15,20"
 	                 selectionMode="single" selection="#{transactionBean.transaction}" rowKey="#{car.systems_trace_number}"
@@ -51,23 +51,78 @@
 			        <f:facet name="header">
 			            <p:outputPanel>
 			            	<div align="right">
-				                <h:outputText value="Search all fields:" />
+				                <h:outputText value="Search all fields: " />
 				                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
 			           		</div>
 			            </p:outputPanel>
 		        	</f:facet>
 		 
-			        <p:column headerText="Id" filterBy="#{car.systems_trace_number}" sortBy="#{car.systems_trace_number}" filterMatchMode="contains">
+			        <p:column headerText="Id" priority="1" filterBy="#{car.systems_trace_number}" sortBy="#{car.systems_trace_number}" filterMatchMode="contains">
 			            <h:outputText value="#{car.systems_trace_number}" />
 			        </p:column>
 		 
-			        <p:column headerText="Tipo de Transaccion" filterBy="#{car.transaction_type}" sortBy="#{car.transaction_type}" filterMatchMode="contains">
+			        <p:column headerText="Tipo de Transaccion" priority="3" filterBy="#{car.transaction_type}" sortBy="#{car.transaction_type}" filterMatchMode="contains">
 			            <h:outputText value="#{car.transaction_type}" />
 			        </p:column>
-			 
-			        <p:column headerText="Monto" filterBy="#{car.amount_transaction}" sortBy="#{car.amount_transaction}" filterMatchMode="contains">
-			            <h:outputText value="#{car.amount_transaction}" />
+			 <!-- 
+			        <p:column headerText="Modo de Entrada" priority="3" filterBy="#{car.pos_entry_mode}" sortBy="#{car.pos_entry_mode}" filterMatchMode="contains">			 
+			            <h:outputText value="#{car.pos_entry_mode}" />
 			        </p:column>
+		 
+			        <p:column headerText="Modelo" priority="2" filterBy="#{car.model}" sortBy="#{car.model}" filterMatchMode="contains">
+			            <h:outputText value="#{car.model}" />
+			        </p:column>
+			 
+			        <p:column headerText="Serial" priority="2" filterBy="#{car.card_acceptor_terminal_id}" sortBy="#{car.card_acceptor_terminal_id}" filterMatchMode="contains">
+			            <h:outputText value="#{car.card_acceptor_terminal_id}" />
+			        </p:column>
+			   -->      
+			        <p:column headerText="Tarjetahabiente" priority="2" filterBy="#{car.card_holder}" sortBy="#{car.pos_entry_mode}" filterMatchMode="contains">
+			            <h:outputText value="#{car.card_holder}" />
+			        </p:column>
+			    <!--     
+			        <p:column headerText="N Tarjeta" priority="2" filterBy="#{car.pan}" sortBy="#{car.pan}" filterMatchMode="contains">
+			            <h:outputText value="#{car.pan}" />
+			        </p:column>
+			        
+			        <p:column headerText="Emisor" priority="3" filterBy="#{car.issuer}" sortBy="#{car.issuer}" filterMatchMode="contains">
+			            <h:outputText value="#{car.issuer}" />
+			        </p:column>
+			  -->      
+			        <p:column headerText="Comercio" priority="1" filterBy="#{car.card_acceptor_name}" sortBy="#{car.card_acceptor_name}" filterMatchMode="contains">
+			            <h:outputText value="#{car.card_acceptor_name}" />
+			        </p:column>	 
+			        			 
+			 		<p:column headerText="Fecha" priority="1" filterBy="#{car.date_transaction}" sortBy="#{car.date_transaction}" filterMatchMode="contains">
+			            <h:outputText value="#{car.date_transaction}">
+			            	<f:convertDateTime pattern="dd/MM/yyyy" />
+			            </h:outputText>
+			        </p:column>
+			        
+			        <p:column headerText="Hora" priority="1" filterBy="#{car.time_transaction}" sortBy="#{car.time_transaction}" filterMatchMode="contains">
+			            <h:outputText value="#{car.time_transaction}">
+			           	 	<f:convertDateTime pattern="HH:mm" />
+			           	 </h:outputText>
+			        </p:column>
+		 
+			       <p:column headerText="Monto" priority="1" filterBy="#{car.amount_transaction}" sortBy="#{car.amount_transaction}" filterMatchMode="contains">
+			            <h:outputText value="#{car.amount_transaction}">
+			             	<f:convertNumber  type="currency"/>
+			            </h:outputText>
+			        </p:column>
+			        
+			        <p:column headerText="Moneda" priority="1" filterBy="#{car.currency}" sortBy="#{car.currency}" filterMatchMode="contains">
+			            <f:facet name="filter">
+						    <p:selectOneButton onchange="PF('carsTable').filter()">
+						        <f:converter converterId="javax.faces.Boolean" />
+						        <f:selectItem itemLabel="All" itemValue="" />
+						        <f:selectItem itemLabel="USD" itemValue="true" />
+						        <f:selectItem itemLabel="VEF" itemValue="false" />
+						    </p:selectOneButton>
+						</f:facet>
+			            <h:outputText value="#{car.currency ? 'USD': 'VEF'}" />
+			        </p:column>
+			        
 	 			</p:dataTable>
 	 			
 	 			<p:contextMenu for="tableStateDT">
@@ -77,7 +132,7 @@
  
 			    <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
 			        <p:outputPanel id="carDetail" style="text-align:center;">
-			            <p:panelGrid  columns="2" rendered="#{not empty transactionBean.transaction}" columnClasses="label,value">
+			            <p:panelGrid  columns="2" rendered="#{not empty transactionBean.listTransactions}" columnClasses="label,value">
 			             
 			                <h:outputText value="Id:" />
 			                <h:outputText value="#{transactionBean.transaction.systems_trace_number}" />

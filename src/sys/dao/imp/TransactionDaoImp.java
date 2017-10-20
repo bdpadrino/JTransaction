@@ -57,6 +57,7 @@ public class TransactionDaoImp implements TransactionDao {
         System.out.println("Successfully deleted " + e.toString());
     }
 
+    @Override
     public Transaction findByID(Integer id) {   
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction e = (Transaction) session.get(Transaction.class, id);
@@ -76,14 +77,6 @@ public class TransactionDaoImp implements TransactionDao {
 
     }
     
-       
-     public Transaction findByName(String nombreCompleto) {   
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction emp = (Transaction) session.createQuery("FROM Transaction where (nombre || ' ' || apellido) = '"+nombreCompleto+"'").uniqueResult();
-        session.close();
-        return emp;
-    }
-
-	
+      
 }
 

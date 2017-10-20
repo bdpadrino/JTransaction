@@ -9,5 +9,6 @@ public interface TransactionDao {
 	public Integer addTransaction(Transaction e);
 	public void modifyTransaction(Transaction e);
 	public void deleteTransaction(Integer id);
+	public Transaction findByID(Integer id);
 	
 }

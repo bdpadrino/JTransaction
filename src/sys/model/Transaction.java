@@ -21,27 +21,27 @@ public class Transaction {
 	@Column(name = "iso")
     private String  iso ;
 	@Column(name = "pan")
-    private String  pan;													//NUMERO DE LA TARJETA DE DEBITO
+    private String  pan;													 //NUMERO DE LA TARJETA DE DEBITO
 	@Column(name = "card_holder")
     private String  card_holder;                                             //NOMBRE TEJETAHABIENTE
 	@Column(name = "issuer")
 	private String  issuer;                                                  //EMISOR "VISA"
 	/*@Column(name = "acquiring_institution_id")
-	private String  acquiring_institution_id;    */                            //CODIGO DEL BANCO EMISOR DE LA TARJETA
+	private String  acquiring_institution_id;    */                          //CODIGO DEL BANCO EMISOR DE LA TARJETA
 	@Column(name = "card_acceptor_name")
 	private String  card_acceptor_name;                                      //NOMBRE DEL COMERCIO DUENO DEL POS
 	@Column(name = "card_acceptor_terminal_id")
 	private String  card_acceptor_terminal_id;         						 //SERIAL DEL TERMINAL
 	@Column(name = "amount_transaction")
-    private Double amount_transaction;                                       //MONTO DE LA TRANSACCION
-	@Column(name = "time_transaction")
-	private String  time_transaction;  	
-	@Column(name = "date_transaction")
-	private String  date_transaction;  	
-	@Column(name = "date_expiration")
-	private String  date_expiration;  	
-	@Column(name = "currency")
-	private String  currency;  
+    private Double  amount_transaction;                                      //MONTO DE LA TRANSACCION
+	@Column(name = "time_transaction")										
+	private String  time_transaction;  									     //HORA DE LA TRANSACCION
+	@Column(name = "date_transaction")										
+	private String  date_transaction;  										 //FECHA DE LA TRANSACCION
+	@Column(name = "date_expiration")										
+	private String  date_expiration;  										 //FECHA DE EXPIRACION DE LA TARJETA
+	@Column(name = "currency")												
+	private String  currency;  												 //MONEDA
 	
 	
     public Transaction(){

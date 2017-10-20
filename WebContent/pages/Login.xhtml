@@ -11,28 +11,28 @@
 		<body class="hold-transition login-page">
 			<div class="login-box">
 			  <div class="login-logo">
-			    <a href="../../index2.html"><b>Admin</b>LTE</a>
+			    <a href="#"><b>Admin</b>LTE</a>
 			  </div>
 			  <!-- /.login-logo -->
 			  <div class="login-box-body">
-			    <p class="login-box-msg">Sign in to start your session</p>
+			    <p class="login-box-msg">Sign in to start your session bdp</p>
 			
 			   <!-- <form action="../../index2.html" method="post"> -->
 			    <h:form id="loginForm">
 			      <div class="form-group has-feedback">
 			        <!-- <input type="email" class="form-control" placeholder="Email"> -->
-			        <p:inputText  class="form-control" value="#{LoginBean.login.user}" placeholder="User"/>
+			        <p:inputText  class="form-control" value="#{UserBean.user.username}" placeholder="User"/>
 			        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 			      </div>
 			      <div class="form-group has-feedback">			      
 			       <!-- <input type="password" class="form-control" placeholder="Password"> -->
-			        <p:password id="nonFeedback" class="form-control" value="#{LoginBean.login.password}" placeholder="Password" />
-			        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			        <p:password id="nonFeedback" class="form-control" value="#{UserBean.user.password}" placeholder="Password" />
+			        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 			      </div>
 			      <div class="row">
 			        <div class="col-xs-8">			          
 			            <label>
-			              <p:selectBooleanCheckbox value="#{LoginBean.login.value1}" /> Remember Me
+			              <p:selectBooleanCheckbox value="#{UserBean.user.value1}" /> Remember Me
 			            </label>			      
 			        </div>
 			        <!-- /.col -->
@@ -40,7 +40,7 @@
 			        <p:link outcome="HistorialTransacciones.xhtml" value="HistorialTransacciones">
 					    <f:param name="productId" value="10" />
 					</p:link>
-			          <p:commandButton value="Sign In." actionListener="#{LoginBean.iniciarSesion}" class="btn btn-primary btn-block btn-flat" process="@this"></p:commandButton>
+			          <p:commandButton value="Sign In." actionListener="#{UserBean.iniciarSesion}" class="btn btn-primary btn-block btn-flat" process="@this"></p:commandButton>
 			        	
 			         <!--  <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button> -->
 			        </div>
