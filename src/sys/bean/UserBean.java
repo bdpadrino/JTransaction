@@ -31,7 +31,7 @@ public class UserBean implements Serializable{
 	@PostConstruct
     public void init() {
 		System.out.println("instanciando el login");
-		this.user = new User();
+		user = new User();
 
 	}
 
@@ -45,7 +45,7 @@ public class UserBean implements Serializable{
     
 	public List<User> getListUsers() {
 		listUsers = cu.listUsers();
-		System.out.println("devolvio la lidta");
+		System.out.println("devolvio la lsta");
 		return listUsers;
 	}
 
@@ -57,10 +57,12 @@ public class UserBean implements Serializable{
 
 	public String iniciarSesion(){
 		System.out.println("entro a iniciar Sesion");
+		System.out.println("entro a iniciar Sesion" +user.getUsername());
+				
 		if (user.getUsername().equals("admin") && user.getPassword().equals("admin")){
 			System.out.println("clave correcta");
 			System.out.println("user" +user.getUsername() + "password" + user.getPassword());
-			return "HistorialTransacciones.xhtml?faces-redirect=true";
+			return "/HistorialTransacciones.xhtml?faces-redirect=true";
 		}
 		else {
 			System.out.println("clave incorrecta");
@@ -68,6 +70,10 @@ public class UserBean implements Serializable{
 			return "";
 		}
 		
+	}
+	
+	public void Registrar() {
+		cu.addUser(user);
 	}
 
     

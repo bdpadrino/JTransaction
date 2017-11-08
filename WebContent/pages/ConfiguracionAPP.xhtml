@@ -56,10 +56,11 @@
 				            <h:outputText value="#{us.username}" />
 				        </p:column>
 				 
-				 		<p:column headerText="Status" sortBy="#{car.status}" >
+				 		<p:column headerText="Status" sortBy="#{us.status}" >
 				            <h:panelGroup rendered="#{us.status} = 'Activo'">
-							   <span class="label label-success">Activo</span>							   
+							   <span class="label label-success"><h:outputText value="#{us.username}" /></span>							   
 							</h:panelGroup>
+							
 				        </p:column>
 				        
 				       

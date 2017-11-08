@@ -130,27 +130,58 @@
 			        <p:menuitem value="Delete" update="tableStateDT" icon="ui-icon-close" actionListener="#{dtContextMenuView.deleteCar}"/>
 			    </p:contextMenu>
  
-			    <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-			        <p:outputPanel id="carDetail" style="text-align:center;">
-			            <p:panelGrid  columns="2" rendered="#{not empty transactionBean.listTransactions}" columnClasses="label,value">
+				<p:dialog header="Detalle Telecarga" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" position="center center" > <!-- height="500" -->
+			        <p:outputPanel id="carDetail">
+			            <p:panelGrid  columns="2" rendered="#{not empty transactionBean.listTransactions}">
 			             
 			                <h:outputText value="Id:" />
 			                <h:outputText value="#{transactionBean.transaction.systems_trace_number}" />
 			 
+			 				<h:outputText value="Tipo de Transaccion:" />
+			                <h:outputText value="#{transactionBean.transaction.transaction_type}" />
+			                
+			                <h:outputText value="Modo de Entrada:" />
+			                <h:outputText value="#{transactionBean.transaction.pos_entry_mode}" />
+			                
 			                <h:outputText value="Modelo del Terminal:" />
 			                <h:outputText value="#{transactionBean.transaction.model}" />
-			 
-			                <h:outputText value="Numero de Tarjeta:" />
-			                <h:outputText value="#{transactionBean.transaction.pan}" />
+			                
+			                <h:outputText value="Serial del Terminal:" />
+			                <h:outputText value="#{transactionBean.transaction.card_acceptor_terminal_id}" />			                
+			                
+	                      	<h:outputText value="Currency:"/>
+			                <h:outputText value="#{transactionBean.transaction.currency}" />
+			                
+			                <h:outputText value="Emisor:"/>
+			                <h:outputText value="#{transactionBean.transaction.issuer}" />			                
+			                
+			                <h:outputText value="Comercio:"/>
+			                <h:outputText value="#{transactionBean.transaction.card_acceptor_name}"/>
 			 
 			                <h:outputText value="Tarjetahabiente:" />
-			                <h:outputText value="#{$transactionBean.transaction.card_holder}"/>
+			                <h:outputText value="#{transactionBean.transaction.card_holder}"/>
+			 
+			                <h:outputText value="Numero de Tarjeta:" />
+			                <h:outputText value="#{transactionBean.transaction.pan}" />			                
 			                
-			                <h:outputText value="Fecha:" />
-			                <h:outputText value="#{$transactionBean.transaction.time_transaction}"/>
+			                <h:outputText value="Monto:" />
+			                <h:outputText value="#{transactionBean.transaction.amount_transaction}" />
+			                
+			               	<h:outputText value="Fecha:" />
+			                <h:outputText value="#{transactionBean.transaction.date_transaction}" />
+			                
+			                <h:outputText value="Hora:" />
+			                <h:outputText value="#{transactionBean.transaction.time_transaction}" />
+			               
+			                <h:outputText value="Fecha expiracion de la tarjeta" />
+			                <h:outputText value="#{transactionBean.transaction.date_expiration}" />	          
+			                
 			            </p:panelGrid>
 			        </p:outputPanel>
 			    </p:dialog>
+			    
+			    
+			    
 		  </h:form> 
    	  </div> <!-- box-body -->
 	</div>  <!-- box-primary -->
